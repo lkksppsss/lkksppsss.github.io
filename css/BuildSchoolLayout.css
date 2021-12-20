@@ -4,6 +4,7 @@
     background-repeat: no-repeat;
     margin: auto;
     background-size: cover;  
+    min-height: 650px;
 }        
 .logo{
     display: flex;            
@@ -69,8 +70,7 @@
     padding-top: 100px;            
 }
 .info{
-    width: 534px;
-    border: 3px none white;
+    width: 540px;
     height: 400px;
     padding: 15px;
     margin: 15px;
@@ -91,7 +91,7 @@
 }
 .info p{
     font-size: 20px;
-    line-height: 20px;
+    line-height: 30px;
     text-align: left;
     padding-left: 80px;
 }
@@ -114,10 +114,9 @@
     padding-top: 30px; 
 }
 .planinfo{
-    border: 3px none white;
     padding: 15px;
     margin: 15px;
-    width: 234px;
+    width: 240px;
     text-align: center;
 }
 .planinfo h4{
@@ -143,10 +142,9 @@
     
 }
 .toolinfo{
-    border: 3px none white;
     padding: 15px;
     margin: 15px;
-    width: 234px;
+    width: 240px;
     text-align: center;
 }
 .toolinfo h3{
@@ -172,10 +170,9 @@
     margin: auto;
 }
 .sponsorimg{
-    border: 3px none white;
     padding: 15px;
     margin: 15px;
-    width: 234px;
+    width: 240px;
     text-align: center;
 }
 .sponsorimg img{
