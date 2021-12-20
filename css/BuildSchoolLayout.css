@@ -41,14 +41,16 @@
 .title{
     text-align: center;
     user-select:none;
+    
 }
-.title h1{
+.title h2{
     font-size: 80px;
     color: white;
     padding-top: 150px;
     font-weight:bold;
+    margin-bottom: 30px;
 }
-.title h2{
+.title h3{
     font-size: 20px;
     color: white;
     line-height: 25px;
