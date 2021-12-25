@@ -425,9 +425,7 @@
     left: 27%;
 }
 .thing video{
-    position: absolute;
-    left: 0;
-    width: 100%;
+    width: 700px;
     -webkit-mask-image: url(/img/toyota/things.svg);
     -webkit-mask-repeat: no-repeat;
 }
