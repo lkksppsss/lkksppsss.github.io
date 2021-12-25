@@ -235,7 +235,7 @@
     font-size: 100px;
     vertical-align: middle;
 }
-.five-info h3::before{
+.fifth-info h3::before{
     content: '05';
     writing-mode: vertical-lr;
     text-orientation: sideways-right;
