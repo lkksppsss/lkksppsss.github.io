@@ -262,7 +262,7 @@
 .innovation{
     background-color: rgb(223, 223, 223);
     width: 600px;
-    height: 280px;
+    min-height: 280px;
     position: absolute;
     bottom: -15%;
     transition: 1s;
@@ -363,7 +363,7 @@
 .innovation-even{
     background-color: rgb(223, 223, 223);
     width: 600px;
-    height: 280px;
+    min-height: 280px;
     position: absolute;
     bottom: -15%;
     right: 0%;
