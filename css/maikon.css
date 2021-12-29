@@ -3,17 +3,23 @@ header{
     box-shadow: 0px 12px 10px -12px #cccccc;
     background-color: white;
 }
-.mb-hd{
-    background-color: #1fde82;
-}
+
 .mb-hd img{width: 100%;}
 @media screen and (max-width: 767px) {
     .pc-opacity{
         display: none;
     }
+    .mb-hd{
+        background-color: #1fde82;
+        margin: auto 0 auto;
+        height: 45px;
+    }
 }
 @media screen and (min-width: 767px) {
     .mb-opacity{
+        display: none;
+    }
+    .mb-opacity img{
         display: none;
     }
 }      
