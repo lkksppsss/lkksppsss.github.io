@@ -5,8 +5,6 @@ header{
 }
 .mb-hd{
     background-color: #1fde82;
-    margin: auto 0 auto;
-    height: 45px;
 }
 .mb-hd img{width: 100%;}
 @media screen and (max-width: 767px) {
