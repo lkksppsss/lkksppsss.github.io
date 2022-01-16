@@ -39,12 +39,12 @@ let photo_img = document.createElement('img');
 photo_img.setAttribute('src','https://store.storeimages.cdn-apple.com/8756/as-images.apple.com/is/ipad-air-select-202009?wid=443&hei=535&fmt=jpeg&qlt=95&.v=1599066777000');
 
 let product = document.createElement('div');
-product.setAttribute('class','accordion col-md-5 col-12');
+product.setAttribute('class','accordion col-md-5 col-12 mt-4');
 product.setAttribute('id','accordionExample');
 
 let product_price = document.createElement('div');
-product_price.setAttribute('class','col-12 border mt-4 bg-secondary text-dark bg-opacity-25');
-product_price.setAttribute('style','height: 200px; font-size: 30px');
+product_price.setAttribute('class','col-12 border mt-4 bg-secondary text-dark bg-opacity-10');
+product_price.setAttribute('style','height: 200px; font-size: 30px; padding: 20px');
 
 let example = {
             外觀:{ 
@@ -97,17 +97,22 @@ window.onload = function(){
     let i = 0;
     let s = 1;//不同顏色不同id
 
+    let product_title = document.createElement('span');
+    product_title.setAttribute('class','fs-1 fw-bold lh-lg');
+    product_title.innerText = '購買 iPad Air';
+    product.appendChild(product_title);
+
     Object.keys(example).forEach(index => {
         
         if( index != "外觀"){
             i ++;
         }
         let item_view = document.createElement('h2');//3
-        item_view.setAttribute('class','accordion-header');
+        item_view.setAttribute('class','accordion-header border border-end-0 border-start-0');
         item_view.setAttribute('id',`heading${num[i]}`);
 
         let view_btn = document.createElement('button');//4
-        view_btn.setAttribute('class','accordion-button');
+        view_btn.setAttribute('class','accordion-button fw-bold');
         view_btn.setAttribute('data-bs-toggle','collapse');
         view_btn.setAttribute('data-bs-target',`#collapse${num[i]}`);
 
@@ -115,7 +120,7 @@ window.onload = function(){
         div.setAttribute('class','d-flex flex-wrap');
 
         let product_item = document.createElement('div');//2
-        product_item.setAttribute('class','accordion-item');
+        product_item.setAttribute('class','accordion-item border-0');
 
         
         view_btn.innerText = index;
@@ -177,8 +182,10 @@ window.onload = function(){
         
     });
 
+    
     product_price.innerText = 'NT$18,900';
 
+    
     product.appendChild(product_price);
     product_photo.appendChild(photo_img);
     contain.appendChild(product_photo);
