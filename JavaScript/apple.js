@@ -10,8 +10,8 @@ nav_btn.setAttribute('class','navbar-toggler');
 nav_btn.setAttribute('data-bs-toggle','collapse');
 nav_btn.setAttribute('data-bs-target','#navbarNav');
 
-let nav_span =document.createElement('span');
-nav_span.setAttribute('class','navbar-toggler-icon shadowHD')
+let nav_span = document.createElement('span');
+nav_span.setAttribute('class','navbar-toggler-icon shadowHD');
 
 
 let nav_div = document.createElement('div');
