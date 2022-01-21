@@ -1,0 +1,108 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+
+    <title>猜數字</title>
+</head>
+<body>
+    <div id="contain">
+        <div class="btn-group w-100" role="group" aria-label="Basic outlined example">
+            <button id="btn1" type="button" class="btn btn-outline-primary">開始</button>
+            <button id="btn2" type="button" class="btn btn-outline-primary">放棄重來</button>
+            <button id="btn3" type="button" class="btn btn-outline-primary">看答案</button>
+        </div>
+        <div id="broad"></div>
+        <div class="input-group">
+            <span class="input-group-text" id="basic-addon1">猜答案</span>
+            <input id="txt" type="text" class="form-control" aria-label="Username" aria-describedby="basic-addon1">
+            <button id="guess" type="button" class="btn btn-outline-primary">猜</button>
+          </div>
+    </div>
+    
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+
+    <script>
+        let answer = [];
+
+
+        window.onload = function(){
+            document.getElementById('contain').setAttribute('style','width: 400px; min-height: 200px');
+            document.getElementById('contain').setAttribute('class','m-auto border d-flex align-content-between flex-wrap');
+        }
+        document.getElementById('btn1').onclick = setAnswer;
+        document.getElementById('btn2').addEventListener('click', function(){
+            answer = [];
+            setAnswer();
+        });
+        document.getElementById('btn3').onclick = function(){
+            let text ="";
+            answer.forEach(item =>{ 
+                text += item;
+            })
+            alert(`${text}`)
+        }
+
+        function setAnswer(){
+            while(answer.length != 4){
+                let num = Math.floor(Math.random()*10);
+                if(answer.includes(num) != true){
+                    answer.push(num);
+                }
+            }
+            console.log(answer) 
+        }
+
+        document.getElementById('guess').onclick = checkAnswer;
+        function checkAnswer(){
+            if(answer.length != 4){
+                alert("請先按開始遊戲");
+                return
+            }
+            let check = Array.from(document.getElementById("txt").value).map(function (x) { 
+                return parseInt(x, 10); 
+            });
+
+            const setType = new Set(check);   
+            const arrayType = Array.from(setType);   
+            console.log(arrayType)
+            
+            if(isNaN(check.filter(x=> x)) != true  || arrayType.length != 4){
+                alert("輸入不符合規範");
+                return
+            }
+
+            console.log(check);
+            let intersect = answer.filter((e) => {
+            return check.indexOf(e) > -1
+            })
+            console.log(intersect);
+            
+            let a = intersect.filter(x => answer.indexOf(x) == check.indexOf(x)).length
+            let b = intersect.length - a;
+            console.log(a);
+            console.log(b);
+            let a2b1 = `${a}A ${b}B`
+            let con = document.createElement("span");
+            let youNum = document.createElement("p");
+            con.innerText = a2b1;
+            youNum.innerText = document.getElementById("txt").value;
+            document.getElementById("broad").appendChild(con);
+            document.getElementById("broad").appendChild(youNum);
+            if( a == 4){
+                alert("猜對了")
+            }
+
+        }
+        
+
+    </script>
+
+</body>
+</html>
