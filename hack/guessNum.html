@@ -11,6 +11,9 @@
     <title>猜數字</title>
 </head>
 <body>
+    <div class="m-auto border border-4 border-bottom-0 d-flex align-content-between justify-content-center flex-wrap mt-3 p-1 bg-secondary bg-opacity-10" style="width: 400px;">
+        <h1 class="d-block">2A1B</h1>
+    </div>
     <div id="contain">
         <div class="btn-group w-100" role="group" aria-label="Basic outlined example">
             <button id="btn1" type="button" class="btn btn-outline-primary">開始</button>
@@ -38,10 +41,21 @@
         }
         document.getElementById('btn1').onclick = setAnswer;
         document.getElementById('btn2').addEventListener('click', function(){
+            document.getElementById("broad").innerText = "";
+            let text ="";
+            answer.forEach(item =>{ 
+                text += item;
+            })
+            alert(`上一題的答案是:${text}`)
+
             answer = [];
             setAnswer();
         });
         document.getElementById('btn3').onclick = function(){
+            if(answer.length != 4){
+                alert("請先按開始遊戲");
+                return
+            }
             let text ="";
             answer.forEach(item =>{ 
                 text += item;
@@ -72,10 +86,11 @@
             const setType = new Set(check);   
             const arrayType = Array.from(setType);   
             console.log(arrayType)
-            
-            if(isNaN(check.filter(x=> x)) != true  || arrayType.length != 4){
-                alert("輸入不符合規範");
-                return
+            for(let i = 0; i < check.length; i++){
+                if(isNaN(check[i]) == true  || arrayType.length != 4 || check.length != 4){
+                    alert("輸入不符合規範,小數點、符號、顏文字、數字重複(輸入超過4個數字,或不是數字都不行)");
+                    return
+                }
             }
 
             console.log(check);
