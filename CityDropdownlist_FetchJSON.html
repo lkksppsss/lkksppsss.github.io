@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Fecth JSON 動態生成City & District下拉是選單</h1>
+
+    <select id='cities' name='cities'>
+    </select>
+    <select id='district' name='district'>
+    </select>
+    <input type="submit" value="提交資料" onclick="submitData()">
+    <div id='msg'></div>
+
+    <script>
+        const citySelect = document.getElementById("cities");
+        const districtSelect = document.getElementById("district");
+        const submit = document.querySelector("input");
+        const msg = document.getElementById("msg")
+
+        let url = "https://raw.githubusercontent.com/lkksppsss/FileStorage/main/taiwanCity";
+
+        window.onload = createSelect;
+
+        function createSelect(){
+            fetch(url)
+                .then(response => response.json())
+                .then(result => {
+                    for(let i = 0; i < result.length; i++){
+                        let option1 = document.createElement("option");
+                        option1.value = i;
+                        option1.text = result[i].city;
+
+                        citySelect.add(option1, null);
+                    }
+                    //---請選擇縣市---
+                    let option2 = document.createElement("option");
+                    option2.value="choose";
+                    option2.text = "---請選擇縣市---";
+                    citySelect.add(option2, 0);// 0 放到第一筆
+                    option2.setAttribute("selected","");//一開始顯示是option2
+        
+                    //---請選擇行政區---
+                    let option3 = document.createElement("option");
+                    option3.value="district";
+                    option3.text = "---請選擇行政區---";
+                    districtSelect.add(option3, 0);
+                    districtSelect.setAttribute("disabled","disabled");
+                    submit.setAttribute("disabled","disabled");
+
+                    
+                    citySelect.onchange = citySelectChange.bind(event, result);
+
+                    districtSelect.onchange = function(){
+                    if(districtSelect.selectedOptions[0].value != "district"){ 
+                    
+                    submit.disabled = false;
+            }
+            }
+                    submit.onclick = submitData.bind(event, result);
+
+                   
+                })
+        }
+
+        let selectedCityValue, selectedCityText;
+
+
+        function citySelectChange(result){
+            if(citySelect.selectedOptions[0].value == "choose"){ 
+                districtSelect.innerHTML = "";
+                let option3 = document.createElement("option");
+                    option3.value="";
+                    option3.text = "---請選擇行政區---";
+                    districtSelect.add(option3, 0);
+                    districtSelect.disabled = true;
+                    submit.disabled = true;
+                return
+            }
+            
+            districtSelect.disabled = false;
+            selectedCityValue = citySelect.selectedOptions[0].value;
+            selectedCityText = citySelect.selectedOptions[0].text;
+
+            districtSelect.length = 1;
+            result[selectedCityValue].districts.forEach(dt => {
+                let opt = document.createElement("option");
+                opt.value = dt.zipcode;
+                opt.text = dt.district + "-" + dt.zipcode;
+
+                districtSelect.add(opt);
+            })
+            
+
+        }
+        
+        function submitData(result){
+            msg.innerText = ""
+            
+            selectedCityValue = citySelect.selectedOptions[0].value;
+            selectedCityText = citySelect.selectedOptions[0].text;
+            let ul = document.createElement("ul");
+            result[selectedCityValue].districts.forEach(dt => {
+                let li = document.createElement("li");
+                li.innerText = dt.district + "-" + dt.zipcode;;
+                ul.appendChild(li);
+            })
+            msg.appendChild(ul);
+        }
+    </script>
+</body>
+</html>
