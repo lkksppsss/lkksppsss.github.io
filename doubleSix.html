@@ -1,6 +1,6 @@
 <!doctype html>
 <script>
-    alert('雙六遊戲!!紅色先!!')
+    alert('雙六遊戲!!女生角色先!!')
 </script>
 <html lang="en">
 <head>
@@ -23,8 +23,7 @@
             bottom: 0;
         }
         .red img{
-            height: 30px;
-            width: 30px;
+            height: 35px;
         }
         .blue{
             position: absolute;
@@ -32,8 +31,7 @@
             bottom: 50px;
         }
         .blue img{
-            height: 30px;
-            width: 30px;
+            height: 40px;
         }
         .dice,.dice2{
             position: fixed;
@@ -134,8 +132,8 @@
             <div box-id="11" class="col-1"></div>
             <div box-id="12" class="col-1"></div>
         </div>
-        <div class="red"><img src="/img/doubleSix/girl.png" alt=""></div>
-        <div class="blue"><img src="/img/doubleSix/girl2.png" alt=""></div>
+        <div class="red"><img src="/img/doubleSix/girl2.png" alt=""></div>
+        <div class="blue"><img src="/img/doubleSix/boy.png" alt=""></div>
         <button class="btn btn-danger dice">擲骰子</button>
         <button class="btn btn-primary dice2">再來一場</button>
     </div><!-- container -->
@@ -259,10 +257,10 @@
                 diceText.innerText = '';
                 container.disabled = true;
                 if(where == 40){
-                    alert(`紅色勝利!!!!!`)
+                    alert(`女生勝利!!!!!`)
                     btn2.disabled = false;
                 }else if(whereB == 40){
-                    alert(`藍色勝利!!!!!`)
+                    alert(`男生勝利!!!!!`)
                     btn2.disabled = false;
                 }
 
