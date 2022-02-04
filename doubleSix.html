@@ -1,0 +1,439 @@
+<!doctype html>
+<script>
+    alert('雙六遊戲!!紅色先!!')
+</script>
+<html lang="en">
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link rel="stylesheet" href="../reset.css">
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+
+    <style>
+        .colH{
+            height: 100px;
+        }
+        .red{
+            height: 30px;
+            width: 30px;
+            background-color: red;
+            border-radius: 50%;
+            position: absolute;
+            left: 0;
+            bottom: 0;
+        }
+        .blue{
+            height: 30px;
+            width: 30px;
+            background-color: skyblue;
+            border-radius: 50%;
+            position: absolute;
+            left: 0;
+            bottom: 50px;
+        }
+        .dice,.dice2{
+            position: fixed;
+            width: 90px;
+            left: 0;
+            top: 30%;
+        }
+        .dice2{
+            top: 35%;
+        }
+        .outer{
+            justify-content: center;
+            background-color: rgb(255, 225, 185);
+            height: 100vh;
+            overflow: auto;
+        }
+        .col-1{
+            background-color: white;
+        }
+        .title,h1{
+            text-align: center;
+            font-weight: bold;
+            background-color: rgba(187, 72, 72, 0.959);
+        }
+        .dice-text{
+            width: 100%;
+            position: absolute;
+            background-color: rgba(0, 0, 0, 0.247);
+            z-index: 5;
+            top: 50%;
+            text-align: center;
+            
+            line-height: 100px;
+            color: white;
+        }
+    </style>
+
+    <title>doubleSix</title>
+    
+</head>
+<body>
+<div class="outer pb-4">
+    <div class="title p-3 sticky-top"><h1>雙六遊戲</h1></div>
+    <div id="container" class="mt-4 m-auto position-relative" style="width: 1080px;">
+        <div class="row">
+            <div box-id="29" class="col-1"></div>
+            <div box-id="30" class="col-1"></div>
+            <div box-id="31" class="col-1"></div>
+            <div box-id="32" class="col-1"></div>
+            <div box-id="33" class="col-1"></div>
+            <div box-id="34" class="col-1"></div>
+            <div box-id="35" class="col-1"></div>
+            <div box-id="36" class="col-1"></div>
+            <div box-id="37" class="col-1"></div>
+            <div box-id="38" class="col-1"></div>
+            <div box-id="39" class="col-1"></div>
+            <div box-id="40" class="col-1"></div>
+        </div>
+        <div class="row">
+            <div box-id="28" class="col-1"></div>
+        </div>
+        <div class="row">
+            <div box-id="27" class="col-1"></div>
+        </div>
+        <div class="row">
+            <div box-id="26" class="col-1"></div>
+            <div box-id="25" class="col-1"></div>
+            <div box-id="24" class="col-1"></div>
+            <div box-id="23" class="col-1"></div>
+            <div box-id="22" class="col-1"></div>
+            <div box-id="21" class="col-1"></div>
+            <div box-id="20" class="col-1"></div>
+            <div box-id="19" class="col-1"></div>
+            <div box-id="18" class="col-1"></div>
+            <div box-id="17" class="col-1"></div>
+            <div box-id="16" class="col-1"></div>
+            <div box-id="15" class="col-1"></div>
+        </div>
+        <div class="row">
+            <div class="col-11"></div>
+            <div box-id="14" class="col-1"></div>
+        </div>
+        <div class="row">
+            <div class="col-11"></div>
+            <div box-id="13" class="col-1"></div>
+        </div>
+        <div class="row">
+            <div box-id="1" class="col-1"></div>
+            <div box-id="2" class="col-1"></div>
+            <div box-id="3" class="col-1"></div>
+            <div box-id="4" class="col-1"></div>
+            <div box-id="5" class="col-1"></div>
+            <div box-id="6" class="col-1"></div>
+            <div box-id="7" class="col-1"></div>
+            <div box-id="8" class="col-1"></div>
+            <div box-id="9" class="col-1"></div>
+            <div box-id="10" class="col-1"></div>
+            <div box-id="11" class="col-1"></div>
+            <div box-id="12" class="col-1"></div>
+        </div>
+        <div class="red"></div>
+        <div class="blue"></div>
+        <button class="btn btn-danger dice">擲骰子</button>
+        <button class="btn btn-primary dice2">再來一場</button>
+    </div><!-- container -->
+</div><!-- outer -->
+<div id="diceText"></div>
+    
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+
+    <script>
+        //DOM
+        let container = document.querySelector('#container')
+        let ball;
+        
+        let btn = document.querySelector('.dice')
+        let btn2 = document.querySelector('.dice2')
+        btn2.disabled = true;
+
+        
+        let bricks = document.querySelectorAll('[box-id]');
+
+        let diceText = document.querySelector('#diceText');
+
+        let turn ;//決定輪到誰
+
+        //物件
+        let brickData = [
+            {
+                id: '1',
+                check: 1,
+                target: function(){
+                    let plus = Math.floor(Math.random() * 6) + 1
+                    let moveB = 0
+                    let dis = "前進"
+                    return [plus,moveB,dis]
+                }
+            },
+            {
+                id: '2',
+                check: 2,
+                target: function(){
+                    let plus = Math.floor(Math.random() * 6) + 1;
+                    let moveB = 1
+                    let dis = "回去"
+                    return [plus,moveB,dis]
+                }
+            }
+        ]
+
+        
+
+        
+        
+        //windoe.onload
+        window.onload = function(){
+            bricks = Array.from(bricks).sort((a, b) => {
+                return a.getAttributeNode('box-id').value - b.getAttributeNode('box-id').value
+            })
+            //將資料塞進格子
+            bricks.forEach(box => {
+                let id = box.getAttributeNode('box-id').value;
+
+                let i = document.createElement('p');
+                box.appendChild(i)
+            })
+
+            bricks[fate - 1].style.background = 'rgb(253, 150, 150)'
+            bricks[fate + 9].style.background = 'rgb(253, 150, 150)'
+            bricks[fate + 16].style.background = 'rgb(253, 150, 150)'
+            bricks[fate + 21].style.background = 'rgb(253, 150, 150)'
+            if(fate < 8){
+                
+                bricks[fate + 26].style.background = 'rgb(253, 150, 150)'
+            }
+
+            ball = document.querySelector('.red');
+            turn = 1;//紅色先
+
+        }
+
+        //col外觀設定
+        let col1 = document.querySelectorAll('.col-1');
+        col1.forEach(x => {
+            x.classList.add('border','colH');
+            
+        })
+
+        //功能檢查
+        let oldLeft, dice;
+        let where = 1;
+        let whereB = 1;
+        let back = 0;
+        let check = 0;
+        let corner;
+
+        //onclick事件
+        btn.onclick = diceNum;
+        btn2.onclick = function(){
+            // history.go(0)
+            window.location.reload();
+            
+            btn2.disabled = true;
+        }
+
+        function diceNum(){
+            dice = Math.floor(Math.random() * 6) + 1;
+            let whatText = `骰出了 ${dice} 點`;
+            corner = 0;
+
+            whtHappend(whatText);
+
+            console.log(`dice: ${dice}`)
+            btn.disabled = true;
+            
+            floatHead();
+            
+        }
+
+        //移動
+        function floatHead() { 
+            if(where == 40 || whereB == 40){
+                diceText.innerText = '';
+                container.disabled = true;
+                if(where == 40){
+                    alert(`紅色勝利!!!!!`)
+                    btn2.disabled = false;
+                }else if(whereB == 40){
+                    alert(`藍色勝利!!!!!`)
+                    btn2.disabled = false;
+                }
+
+                return
+            }
+            if(dice == 0){
+                diceText.innerText = '';//清空橫幅字
+                deicePlus();
+                changeTurn(turn);
+                return
+            }
+            oldBottom = ball.offsetTop; 
+            oldLeft = ball.offsetLeft;
+            movieXorY();
+            coner(corner, turn)
+            dice --;
+            
+            checkXY(check)
+            
+            if(back == 0){ //back == 0 正向
+                if(turn == 1){
+                    where++;
+                }else if(turn == -1){
+                    whereB++;
+                }
+            }else if(back == 1){ //back == 1 反向
+                moveX = -moveX;
+                moveY = -moveY;
+                
+                if(turn == 1){
+                    where--;
+                }else if(turn == -1){
+                    whereB--;
+                }
+            }
+            console.log(`where: ${where}`)
+            console.log(`whereB: ${whereB}`)
+            
+            ball.animate([ 
+                { left: oldLeft+moveX+"px", top: oldBottom + (-moveY) + 'px' } 
+                ], { 
+                duration:500, 
+                fill: "forwards" 
+                }).onfinish = function() { 
+                    setTimeout(floatHead,200) ;
+                } 
+        }
+
+        const fate = Math.floor(Math.random() * (12 - 2 )+ 1) + 2;//取3~12
+
+        function deicePlus(){
+            let randomEvent = Math.floor(Math.random() * 2);
+            corner = randomEvent;
+            let val = brickData[randomEvent].target();
+
+            //命運格子
+            if(where == fate || where == (fate + 10) || where == (fate + 17) || where == (fate + 22) 
+                || whereB == fate || whereB == (fate + 10) || whereB == (fate + 17) || whereB == (fate + 22)
+            ){
+                destiny(val, randomEvent);
+            }else if(fate < 8 && (where == (fate + 27)  || whereB == (fate + 27))){
+                destiny(val, randomEvent);
+            }
+            else{ 
+                back = 0;
+                check = 0;
+                turn = -turn;//換顏色
+                corner = 0;//沒進事件復原
+                btn.disabled = false;
+                
+                return
+            }
+        }
+
+        function destiny(val, randomEvent){
+            dice = val[0];
+            back = val[1];
+            dis = val[2];
+            if((where - dice) <= 0  && turn == 1){
+                dice = where - 1;
+            }
+            if((whereB - dice) <= 0 && turn == -1){
+                dice = whereB - 1;
+            }
+            let whatText = `${dis} : ${dice}步`;
+            whtHappend(whatText);
+            coner(randomEvent, turn);
+            floatHead();
+        }
+
+        function movieXorY(){
+            if(ball.offsetLeft == 0 && ball.offsetTop <= 367 && ball.offsetTop > 64){
+                moveY = 101;
+                moveX = 0;
+            }else if( (ball.offsetTop == 367 || ball.offsetTop == 317) && ball.offsetLeft >= 91){
+                moveX = -91;
+                moveY = 0;
+            }else if( ball.offsetLeft == 1001){
+                moveY = 101;
+                moveX = 0;
+                
+            }else{
+                moveX = 91;
+                moveY = 0;
+            }
+            return (moveX,moveY)
+        }
+
+        function coner(num, turn){
+            let AB;
+            if(turn == 1){
+                AB = where;
+            }else if(turn == -1){
+                AB = whereB;
+            }
+            if((turn == 1 || turn == -1) && num == 1 ){
+                switch(AB){
+                    case 12:
+                        check = 1;
+                    break;
+                    case 15:
+                        check = 2;
+                    break;
+                    case 26:
+                        check = 3;
+                    break;
+                    case 29:
+                        check = 4;      
+                    break;
+                }
+            }
+        }
+
+        function checkXY(check){
+            switch(check){
+                case 1:
+                    moveY = 0;
+                    moveX = 91;
+                break;
+                case 2:
+                    moveY = 101;
+                    moveX = 0;
+                break;
+                case 3:
+                    moveY = 0;
+                    moveX = -91;
+                break;
+                case 4:
+                    moveY = -101;
+                    moveX = 0;
+                break;
+            }
+        }
+
+        function changeTurn(turn){
+            if(turn == 1){
+                ball = document.querySelector('.red');
+            }else if(turn == -1){
+                ball = document.querySelector('.blue');
+            }
+        }
+
+        //橫幅字
+        function whtHappend(text){
+            let diceDiv = document.createElement('div');
+            diceDiv.classList = 'dice-text';
+            diceDiv.innerText = text;
+            diceText.appendChild(diceDiv);
+        }
+        
+
+    </script>
+</body>
+</html>
