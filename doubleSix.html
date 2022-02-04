@@ -18,22 +18,22 @@
             height: 100px;
         }
         .red{
-            height: 30px;
-            width: 30px;
-            background-color: red;
-            border-radius: 50%;
             position: absolute;
             left: 0;
             bottom: 0;
         }
-        .blue{
+        .red img{
             height: 30px;
             width: 30px;
-            background-color: skyblue;
-            border-radius: 50%;
+        }
+        .blue{
             position: absolute;
             left: 0;
             bottom: 50px;
+        }
+        .blue img{
+            height: 30px;
+            width: 30px;
         }
         .dice,.dice2{
             position: fixed;
@@ -134,8 +134,8 @@
             <div box-id="11" class="col-1"></div>
             <div box-id="12" class="col-1"></div>
         </div>
-        <div class="red"></div>
-        <div class="blue"></div>
+        <div class="red"><img src="/img/doubleSix/girl.png" alt=""></div>
+        <div class="blue"><img src="/img/doubleSix/girl2.png" alt=""></div>
         <button class="btn btn-danger dice">擲骰子</button>
         <button class="btn btn-primary dice2">再來一場</button>
     </div><!-- container -->
@@ -276,6 +276,7 @@
             }
             oldBottom = ball.offsetTop; 
             oldLeft = ball.offsetLeft;
+            
             movieXorY();
             coner(corner, turn)
             dice --;
@@ -363,7 +364,6 @@
             }else if( ball.offsetLeft == 1001){
                 moveY = 101;
                 moveX = 0;
-                
             }else{
                 moveX = 91;
                 moveY = 0;
