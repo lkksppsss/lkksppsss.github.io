@@ -1,0 +1,286 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css" integrity="sha384-DyZ88mC6Up2uqS4h/KRgHuoeGwBcD4Ng9SiP4dIRy0EXTlnuz47vAwmeGwVChigm" crossorigin="anonymous">
+
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css"
+        integrity="sha512-xodZBNTC5n17Xt2atTPuE1HxjVMSvLVW9ocqUKLsCC5CXdbqCmblAshOMAS6/keqq/sMZMZ19scR4PsZChSR7A=="
+        crossorigin="" />
+    <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"
+        integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA=="
+        crossorigin=""></script>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.4.1/dist/MarkerCluster.Default.css" />
+    <script src="https://unpkg.com/leaflet.markercluster@1.4.1/dist/leaflet.markercluster.js"></script>
+
+    <title>全國監測站-各地即時空氣品質指標</title>
+
+    <style>
+        .container{
+            background-color: white;
+        }
+
+        #map {
+            height: 100%;
+        }
+        table{
+            height: 500px;
+        }
+        body{
+            background-color: rgb(62, 183, 219);
+        }
+        p{
+            margin-bottom: 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="container mt-3">
+        <div class="col-12 border-bottom border-5">
+            <div class="row">
+                <h2 class="w-100 text-center lh-lg"><strong>全國監測站-各地即時空氣品質指標</strong>(每小時) </h2>
+            </div> 
+        </div>
+        <div class="row py-3">
+            <div class="col-7">
+                <div id="map"></div>
+            </div>
+            <div class="col-5">
+                <div class="row">
+                    <div class="form-group mb-4">
+                        <label for="country">縣/市</label>
+                        <select id="country" class="form-control">
+    
+                        </select>
+                    </div>
+                </div>
+                <table class="table table-bordered table-striped border-dark">
+                    <thead class="text-center">
+                        <tr>
+                            <th colspan="3">
+                                <span></span>
+                                <h3></h3>
+                                <div id="aqi">
+                                    <p></p>
+                                </div>
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody class="bodyT">
+                        <tr>
+                            <td>
+                                <p>PM2.5(μg/m3)</p>
+                                <p>細懸浮微粒</p>
+                            </td>
+                            <td>
+                                <p>移動平均</p>	
+                                <p>小時濃度</p>
+                            </td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <p>PM10(μg/m3)</p>
+                                <p>懸浮微粒</p>
+                            </td>
+                            <td>
+                                <p>移動平均</p>
+                                <p>小時濃度</p>
+                            </td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <p>O3(ppb)</p>
+                                <p>臭氧</p>
+                            </td>
+                            <td>
+                                <p>8小時移動平均</p>
+                                <p>小時濃度</p>
+                            </td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <p>CO(ppm)</p>
+                                <p>一氧化碳</p>
+                            </td>
+                            <td>
+                                <p>8小時移動平均</p>	
+                                <p>小時濃度</p>
+                            </td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <p>SO2(ppb)</p>
+                                <p>二氧化硫</p>
+                            </td>
+                            <td><p>小時濃度</p></td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <p>NO2(ppb)</p>
+                                <p>二氧化氮</p>
+                            </td>
+                            <td>
+                                <p>小時濃度</p>
+                            </td>
+                            <td></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- Axios -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.25.0/axios.min.js" integrity="sha512-/Q6t3CASm04EliI1QyIDAA/nDo9R8FQ/BULoUFyN4n/BDdyIxeH7u++Z+eobdmr11gG5D/6nPFyDlnisDwhpYA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+
+    <script>
+        //宣告
+        let map;
+        //各監測站空氣檢測資料
+        let airDataResquest = axios.get('https://data.epa.gov.tw/api/v1/aqx_p_432?limit=1000&api_key=9be7b239-557b-4c10-9775-78cadfc555e9&sort=ImportDate%20desc&format=json');
+
+        let airData; //行政區用空氣檢測資料
+
+        let markers = L.markerClusterGroup(); //地圖Marker叢集群組
+        //DOM
+        const countrySelect = document.querySelector('#country');
+        const areaText = document.querySelector('strong');
+        const td1th = document.querySelectorAll('.bodyT> tr> td:first-child');
+        const td2th = document.querySelectorAll('.bodyT> tr> td:nth-child(2)');
+        const td3th = document.querySelectorAll('.bodyT> tr> td:last-child'); 
+        const time = document.querySelector('span'); 
+        const city = document.querySelector('h3'); 
+        const aqiText = document.querySelector('#aqi>p'); 
+        const AQIdiv = document.querySelector('#aqi'); 
+
+        //表格設定
+        td1th.forEach(x => {x.classList = "col-5";})
+        td2th.forEach(x => {x.classList = "col-3";})
+        td3th.forEach(x => {x.classList = "col-4";})
+
+        //window.onload
+        window.onload = function(){
+            setMap();
+            let Today = new Date();
+            time.innerText = Today.getFullYear()+ " 年 " + (Today.getMonth()+1) + " 月 " + Today.getDate() + " 日";
+
+            Promise.all([airDataResquest])
+                .then(response => {
+                    let airRes = response[0];
+                    ////
+                    console.log(airRes)
+
+                    //area
+                    airData = airRes.data.records;
+
+                    console.log(airData)
+
+                    //表格開頭設定
+                    let avg = (airData.map(x => parseInt(x.AQI)).reduce((a,b) => a + b) / 84).toFixed(1);
+                    let color = avg > 100 ? 'red' : avg > 100 ? 'orange' : avg > 50 ? 'yellow' : 'greenyellow';
+
+                    city.innerText = `全國AQI平均值`;
+                    aqiText.innerText = `空氣品質指標AQI: ${avg}`;
+                    aqiText.style = `line-height: 200px;`
+                    AQIdiv.setAttribute('class','rounded-circle border border-5 m-auto');
+                    AQIdiv.style = `border-color: ${color} !important; height: 200px; width: 200px;`
+
+                    //初始設定標籤
+                    setMarker();
+
+                    //初始右側縣市下拉選單
+                    ['請選擇'].concat([...new Set(Object.values(airData).map(x => (x.County + x.SiteName)))]).forEach( x => {
+                        let option = document.createElement('option');
+                        option.innerText = x;
+                        option.value = x.SiteName == '請選擇' ? '' : x;
+
+                        countrySelect.appendChild(option);
+                    })
+
+                })
+
+            countrySelect.onchange = function(){
+                if(countrySelect != ''){
+                    //地圖的焦點移動至該縣市
+                    let country = Object.values(airData).find(x => (x.County + x.SiteName) == countrySelect.value);
+                    map.setView([country.Latitude, country.Longitude], 15)
+
+                    placeAir(country)
+                }
+            }
+        }
+
+        //function
+        function setMap(){
+            //初始化地圖
+            map = L.map('map', {
+            center: [25.01416068163684, 120.56454962636319],
+            zoom: 8
+            })
+            //設定圖資
+            let osmUrl = 'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png'
+            let osm = new L.TileLayer(osmUrl, { minZoom: 8, maxZoom: 19 })
+            map.addLayer(osm)
+        }
+
+        function setMarker(){
+            if(markers) markers.clearLayers()
+
+            Object.values(airData).forEach(item =>{
+                let data = item;
+
+                let icon = document.createElement('i');
+                icon.classList.add('fas', 'fa-circle');
+
+                let color = data.AQI > 100 ? 'red' : data.AQI > 100 ? 'orange' : data.AQI > 50 ? 'yellow' : 'greenyellow';
+
+                let marker = L.marker([data.Latitude, data.Longitude]);
+                marker.bindPopup(
+                    `
+                    <h4>${data.County} ${data.SiteName} 監測站</h4>
+                    <p style="font-size: 20px;"><i class="fas fa-circle pe-2" style="color: ${color};"></i>  AQI:${data.AQI}</p>
+                    `
+                )
+                marker.addEventListener('click', placeAir.bind(event,data))
+
+                markers.addLayer(marker)
+            })
+
+            map.addLayer(markers);
+        }
+
+        //表格
+        function placeAir(data){
+            let color = data.AQI > 100 ? 'red' : data.AQI > 100 ? 'orange' : data.AQI > 50 ? 'yellow' : 'greenyellow';
+            city.innerText = `${data.County} ${data.SiteName}`;
+            aqiText.innerText = `空氣品質指標AQI: ${data.AQI}`;
+            aqiText.style = `line-height: 200px;`
+            AQIdiv.setAttribute('class','rounded-circle border border-5 m-auto');
+            AQIdiv.style = `border-color: ${color} !important; height: 200px; width: 200px;`
+
+            td3th[0].innerHTML = `<p>${data['PM2.5']}</p> <p>${data['PM2.5_AVG']}</p>`
+            td3th[1].innerHTML = `<p>${data['PM10']}</p> <p>${data['PM10_AVG']}</p>`
+            td3th[2].innerHTML = `<p>${data['O3']}</p> <p>${data['O3_8hr']}</p>`
+            td3th[3].innerHTML = `<p>${data['CO']}</p> <p>${data['CO_8hr']}</p>`
+            td3th[4].innerHTML = `<p>${data['SO2']}</p>`
+            td3th[5].innerHTML = `<p>${data['NO2']}</p>`
+
+        }
+    </script>
+
+</body>
+</html>
