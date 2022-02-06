@@ -184,7 +184,7 @@
                         if(day <= dayOfMonth){
                             //這個月
                             td.innerText = day;
-                            if(day == today.getDate() && month == 0 && year == today.getFullYear()){
+                            if(day == today.getDate() && month == today.getMonth() && year == today.getFullYear()){
                                 td.setAttribute('style','background-color: skyblue;')
                             }
 
