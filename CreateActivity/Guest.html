@@ -10,6 +10,19 @@
     <link rel="stylesheet" href="/reset.css">
 
     <style>
+        .container-style{
+            box-shadow: 0 2px 10px 0 rgb(0 0 0 / 5%);
+        }
+        .icon-div{
+            padding: 4px 10px; 
+            font-size: 15px;
+        }
+        .icon-plus{
+            width: 150px; 
+            height: 150px; 
+            font-size: 35px; 
+            line-height: 150px;
+        }
         @media screen and (min-width: 768px) {
             .activity{
                 width: 100%;
@@ -31,15 +44,15 @@
 </head>
 <body style="height: 100%;">
     <main class="bg-light">
-        <div class="container-md m-auto bg-white" style="box-shadow: 0 2px 10px 0 rgb(0 0 0 / 5%);">
+        <div class="container-md m-auto bg-white container-style">
             <div class="activity m-auto p-5">
                 <div class="col-12 border-bottom">
                     <p class="d-inline" style="font-size: 20px;">
-                        快來介紹你的來賓有多厲害！ <div class="btn-dark rounded-circle d-inline-block" style="padding: 4px 10px; font-size: 15px;"><i class="far fa-lightbulb"></i></div>
+                        快來介紹你的來賓有多厲害！ <div class="btn-dark rounded-circle d-inline-block icon-div"><i class="far fa-lightbulb"></i></div>
                     </p>    
     
                     <div class="text-center mt-5" style="width: 150px; min-height: 500px;">
-                        <div class="bg-light rounded-circle text-center" style="width: 150px; height: 150px; font-size: 35px; line-height: 150px;">
+                        <div class="bg-light rounded-circle text-center icon-plus">
                             <i class="fas fa-plus"></i>
                         </div>
                         <p class="mt-3">新增嘉賓</p>
