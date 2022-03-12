@@ -23,21 +23,34 @@
             font-size: 35px; 
             line-height: 150px;
         }
+        .guest{
+            width: 150px; 
+            min-height: 300px;
+        }
         @media screen and (min-width: 768px) {
             .activity{
                 width: 100%;
             }
+            
         }
 
         @media screen and (min-width: 1024px) {
             .activity{
                 width: 800px;
             }
+            .guest{
+                width: 150px; 
+                min-height: 500px;
+            }
         }
 
         @media screen and (min-width: 1200px) {
             .activity{
                 width: 800px;
+            }
+            .guest{
+                width: 150px; 
+                min-height: 500px;
             }
         }
     </style>
@@ -51,11 +64,13 @@
                         快來介紹你的來賓有多厲害！ <div class="btn-dark rounded-circle d-inline-block icon-div"><i class="far fa-lightbulb"></i></div>
                     </p>    
     
-                    <div class="text-center mt-5" style="width: 150px; min-height: 500px;">
+                    <div class="mt-5 guest">
                         <div class="bg-light rounded-circle text-center icon-plus">
                             <i class="fas fa-plus"></i>
                         </div>
-                        <p class="mt-3">新增嘉賓</p>
+                        <div class="text-center">
+                            <p class="mt-3">新增嘉賓</p>
+                        </div>
                     </div>
                 </div>
 
