@@ -73,9 +73,12 @@
             background-color: #2da4f2;
             border: 1px solid #2da4f2;
         }
-
         .ticket table{
             width: calc(100% - 1px);
+        }
+        .card-pad>p{
+            padding: 0;
+            margin-top: 20px;
         }
         .model-width{
             width: 300px;
@@ -116,7 +119,7 @@
                                 </tr>
                                 </thead>
                                 <tbody>
-                                <tr class="accordion-item">
+                                <tr>
                                     <th scope="row"  class="lh-lg"><i class="fas fa-grip-vertical"></i></th>
                                     <td class="lh-lg"><input type="checkbox" name="c" value="" /></td>
                                     <td class="lh-lg">Otto</td>
@@ -132,10 +135,22 @@
                                     
                                 </tr>  
                                 <tr>
-                                    <td class="p-0" rowspan="6" colspan="7">
+                                    <td class="p-0" colspan="7">
                                         <div class="collapse" id="collapse-1">
-                                            <div class="card card-body border-0 bg-light">
-                                            Some placeholder content for the collapse component. This panel is hidden by default but revealed when the user activates the relevant trigger.
+                                            <div class="card card-body border-0 bg-light card-pad">
+                                                <p>票卷說明</p>
+
+                                                <p>是否為審核票?</p>
+                                                <span>是</span>
+
+                                                <p>是否開賣?</p>
+                                                <span>否</span>
+
+                                                <p>售票時間</p>
+                                                <span>2022/03/04(五) 12:00 ~ 2023/02/02(四)</span>
+
+                                                <p>有效時間(可驗票時間)</p>
+                                                <span>2022/02/01(三) 12:00 ~ 2023/02/02(四)</span>
                                             </div>
                                             <div class="text-center border-0 text-primary collapsed bg-opacity-10 bg-secondary" 
                                             type="button" data-bs-toggle="collapse" data-bs-target="#collapse-1" aria-expanded="false" aria-controls="collapse-1">
@@ -143,7 +158,49 @@
                                             </div>
                                         </div>
                                     </td>
-                                </tr>                                           
+                                </tr>  
+                                
+                                <tr>
+                                    <th scope="row"  class="lh-lg"><i class="fas fa-grip-vertical"></i></th>
+                                    <td class="lh-lg"><input type="checkbox" name="c" value="" /></td>
+                                    <td class="lh-lg">788899955</td>
+                                    <td class="lh-lg">@mdo</td>
+                                    <td class="lh-lg">Mark</td>
+                                    <td class="lh-lg">Otto</td>
+                                    <td class="accordion-header" id="flush-headingOne">
+                                        <button class="btn btn-outline-light rounded-circle border-0 text-primary collapsed" 
+                                        type="button" data-bs-toggle="collapse" data-bs-target="#collapse-2" aria-expanded="false" aria-controls="collapse-1">
+                                            <i class="fas fa-info-circle"></i>
+                                        </button>
+                                    </td>
+                                    
+                                </tr>  
+                                <tr>
+                                    <td class="p-0" rowspan="6" colspan="7">
+                                        <div class="collapse" id="collapse-2">
+                                            <div class="card card-body border-0 bg-light card-pad">
+                                                <p>票卷說明</p>
+
+                                                <p>是否為審核票?</p>
+                                                <span>是</span>
+
+                                                <p>是否開賣?</p>
+                                                <span>否</span>
+
+                                                <p>售票時間</p>
+                                                <span>2022/03/04(五) 12:00 ~ 2023/02/02(四)</span>
+
+                                                <p>有效時間(可驗票時間)</p>
+                                                <span>2022/02/01(三) 12:00 ~ 2023/02/02(四)</span>
+                                            </div>
+                                            <div class="text-center border-0 text-primary collapsed bg-opacity-10 bg-secondary" 
+                                            type="button" data-bs-toggle="collapse" data-bs-target="#collapse-2" aria-expanded="false" aria-controls="collapse-2">
+                                                收和資訊
+                                            </div>
+                                        </div>
+                                    </td>
+                                </tr>
+                                
                                 </tbody>
                             </table>
                         </div>
