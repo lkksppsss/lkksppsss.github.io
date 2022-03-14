@@ -13,10 +13,16 @@
         .container-style{
             box-shadow: 0 2px 10px 0 rgb(0 0 0 / 5%);
         }
+        .thead-min-width th:first-child{  min-width: 200px;}        
+        .thead-min-width th:nth-child(2){  min-width: 100px;}        
+        .thead-min-width th:nth-child(3){  min-width: 130px;}        
+        .thead-min-width th:nth-child(4){  min-width: 150px;}  
         @media screen and (min-width: 768px) {
             .ticket{
                 width: 100%;
+                
             }
+            .thead-min-width th:nth-child(3){  min-width: 100px;} 
         }
 
         @media screen and (min-width: 1024px) {
@@ -30,6 +36,10 @@
                 width: 800px;
             }
         }
+        .resize{
+            resize: none;
+        }
+              
         .ticket-label{
             width: 100px;
             height: 40px;
@@ -69,6 +79,21 @@
         }
         .model-width{
             width: 300px;
+        }
+        .check-ticket span{
+            color: #212529;
+        }
+        .check-ticket *{
+            font-size: 16px;
+        }
+        .check-ticket input{
+            min-width: 25px;
+            min-height: 25px;
+            border: 1.5px solid #e2e2e2;
+            border-radius: 2px;
+            background-color: #e2e2e2;
+            margin-right: 10px;
+
         }
     </style>
 
@@ -121,7 +146,7 @@
                         <p class="mb-5">新增的活動票券</p>
                         <div class="overflow-auto">
                             <table class="table border accordion ticket-table"  id="accordionExample">
-                                <thead class="table-dark border border-dark">
+                                <thead class="table-dark border border-dark thead-min-width">
                                 <tr>
                                     <th scope="col" colspan="2" class="col-md-4">票券名稱</th>
                                     <th scope="col" class="col-md-2">票券數量</th>
@@ -132,17 +157,17 @@
                                 <tbody>
                                 <tr>
                                     <td class="lh-lg" colspan="2">
-                                        <div class="border w-75 p-1">
+                                        <div class="border col-12 col-md-9 p-1">
                                             <input type="text" class="border-0"/>
                                         </div>
                                     </td>
                                     <td class="lh-lg">
-                                        <div class="border w-75 p-1">
-                                            <input class="col-10 border-0" type="number"/>
+                                        <div class="border col-12 col-md-9 p-1">
+                                            <input class="col-10 border-0 d-inline-block" type="number"/>
                                         </div>
                                     </td>
                                     <td class="lh-lg" colspan="2" class="m-1" >
-                                        <div class="border w-75 p-1">
+                                        <div class="border w-75 p-md-1 p-0 flex-nowrap">
                                             <div class="d-inline col-4 me-2">NT$</div>
                                             <input type="number" class="border-0 d-inline col-7" step="1" maxlength="50" value="200">
                                         </div>
@@ -161,68 +186,110 @@
                                         </button>
                                     </td>
                                     
-                                </tr>  
+                                </tr>
+                                <!-- 票卷設定-延伸區塊   -->
                                 <tr>
                                     <td class="p-0" colspan="7">
                                         <div class="collapse" id="collapse-1">
                                             <div class="card card-body border-0 bg-light card-pad">
                                                 <p>票卷說明</p>
-
-                                                <p>是否為審核票?</p>
-                                                <span>是</span>
-
-                                                <p>是否開賣?</p>
-                                                <span>否</span>
+                                                    <textarea class="resize" name="" id="" cols="30" rows="10"></textarea>
 
                                                 <p>售票時間</p>
-                                                <span>2022/03/04(五) 12:00 ~ 2023/02/02(四)</span>
-
+                                                    <div>
+                                                        <label for="startTime" class="d-block m-md-2">開始時間:</label>
+                                                        <input class="time-select d-inline col-11 col-md-5 m-md-2 m-0" type="date" id="startTime" name="startTime">
+                                                        <select class="time-select d-inline col-5 col-md-3 m-md-2 me-2" aria-label="Default select example">
+                                                            <option selected></option>
+                                                            <option value="1">00</option>
+                                                            <option value="2">01</option>
+                                                            <option value="3">02</option>
+                                                            <!-- 選項用JS -->
+                                                        </select>
+                                                        <select class="time-select d-inline col-5 col-md-3 m-md-2 m-2" aria-label="Default select example">
+                                                            <option selected></option>
+                                                            <option value="1">00</option>
+                                                            <option value="2">05</option>
+                                                            <option value="3">10</option>
+                                                            <!-- 選項用JS -->
+                                                        </select>
+                                                    </div>
+                                                    <div class="mb-4">
+                                                        <label for="startTime" class="d-block m-md-2">結束時間:</label>
+                                                        <input class="time-select d-inline col-11 col-md-5 m-md-2 m-0" type="date" id="startTime" name="startTime">
+                                                        <select class="time-select d-inline col-5 col-md-3 m-md-2 me-2" aria-label="Default select example">
+                                                            <option selected></option>
+                                                            <option value="1">00</option>
+                                                            <option value="2">01</option>
+                                                            <option value="3">02</option>
+                                                            <!-- 選項用JS -->
+                                                        </select>
+                                                        <select class="time-select d-inline col-5 col-md-3 m-md-2 m-2" aria-label="Default select example">
+                                                            <option selected></option>
+                                                            <option value="1">00</option>
+                                                            <option value="2">05</option>
+                                                            <option value="3">10</option>
+                                                            <!-- 選項用JS -->
+                                                        </select>
+                                                    </div>
                                                 <p>有效時間(可驗票時間)</p>
-                                                <span>2022/02/01(三) 12:00 ~ 2023/02/02(四)</span>
+                                                    <span>有效時間為可驗票入場的時間，系統自動提前兩小時開放給主辦方現場測試。</span>
+                                                    <label class="d-flex check-ticket">
+                                                        <input type="checkbox" class="" checked="">
+                                                        <span class="">有效時間建議設定為活動時間</span>
+                                                    </label>
+                                                    <div>
+                                                        <label for="startTime" class="d-block m-md-2">開始時間:</label>
+                                                        <input class="time-select d-inline col-11 col-md-5 m-md-2 m-0" type="date" id="startTime" name="startTime">
+                                                        <select class="time-select d-inline col-5 col-md-3 m-md-2 me-2" aria-label="Default select example">
+                                                            <option selected></option>
+                                                            <option value="1">00</option>
+                                                            <option value="2">01</option>
+                                                            <option value="3">02</option>
+                                                            <!-- 選項用JS -->
+                                                        </select>
+                                                        <select class="time-select d-inline col-5 col-md-3 m-md-2 m-2" aria-label="Default select example">
+                                                            <option selected></option>
+                                                            <option value="1">00</option>
+                                                            <option value="2">05</option>
+                                                            <option value="3">10</option>
+                                                            <!-- 選項用JS -->
+                                                        </select>
+                                                    </div>
+                                                    <div class="mb-4">
+                                                        <label for="startTime" class="d-block m-md-2">結束時間:</label>
+                                                        <input class="time-select d-inline col-11 col-md-5 m-md-2 m-0" type="date" id="startTime" name="startTime">
+                                                        <select class="time-select d-inline col-5 col-md-3 m-md-2 me-2" aria-label="Default select example">
+                                                            <option selected></option>
+                                                            <option value="1">00</option>
+                                                            <option value="2">01</option>
+                                                            <option value="3">02</option>
+                                                            <!-- 選項用JS -->
+                                                        </select>
+                                                        <select class="time-select d-inline col-5 col-md-3 m-md-2 m-2" aria-label="Default select example">
+                                                            <option selected></option>
+                                                            <option value="1">00</option>
+                                                            <option value="2">05</option>
+                                                            <option value="3">10</option>
+                                                            <!-- 選項用JS -->
+                                                        </select>
+                                                    </div>
+                                                <p>是否開賣？</p>
+                                                    <div class="form-check">
+                                                        <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1">
+                                                        <label class="form-check-label" for="flexRadioDefault1">
+                                                            發售，活動上架後立即開賣
+                                                        </label>
+                                                    </div>
+                                                    <div class="form-check">
+                                                        <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2" checked>
+                                                        <label class="form-check-label" for="flexRadioDefault2">
+                                                            停售，該票券暫停對外銷售，並從購票頁中隱藏
+                                                        </label>
+                                                    </div>
                                             </div>
                                             <div class="text-center border-0 text-primary collapsed bg-opacity-10 bg-secondary" 
                                             type="button" data-bs-toggle="collapse" data-bs-target="#collapse-1" aria-expanded="false" aria-controls="collapse-1">
-                                                收和資訊
-                                            </div>
-                                        </div>
-                                    </td>
-                                </tr>  
-                                
-                                <tr>
-                                    <th scope="row"  class="lh-lg"><i class="fas fa-grip-vertical"></i></th>
-                                    <td class="lh-lg"><input type="checkbox" name="c" value="" /></td>
-                                    <td class="lh-lg">788899955</td>
-                                    <td class="lh-lg">@mdo</td>
-                                    <td class="lh-lg">Mark</td>
-                                    <td class="lh-lg">Otto</td>
-                                    <td class="accordion-header" id="flush-headingOne">
-                                        <button class="btn btn-outline-light rounded-circle border-0 text-primary collapsed" 
-                                        type="button" data-bs-toggle="collapse" data-bs-target="#collapse-2" aria-expanded="false" aria-controls="collapse-1">
-                                            <i class="fas fa-info-circle"></i>
-                                        </button>
-                                    </td>
-                                    
-                                </tr>  
-                                <tr>
-                                    <td class="p-0" rowspan="6" colspan="7">
-                                        <div class="collapse" id="collapse-2">
-                                            <div class="card card-body border-0 bg-light card-pad">
-                                                <p>票卷說明</p>
-
-                                                <p>是否為審核票?</p>
-                                                <span>是</span>
-
-                                                <p>是否開賣?</p>
-                                                <span>否</span>
-
-                                                <p>售票時間</p>
-                                                <span>2022/03/04(五) 12:00 ~ 2023/02/02(四)</span>
-
-                                                <p>有效時間(可驗票時間)</p>
-                                                <span>2022/02/01(三) 12:00 ~ 2023/02/02(四)</span>
-                                            </div>
-                                            <div class="text-center border-0 text-primary collapsed bg-opacity-10 bg-secondary" 
-                                            type="button" data-bs-toggle="collapse" data-bs-target="#collapse-2" aria-expanded="false" aria-controls="collapse-2">
                                                 收和資訊
                                             </div>
                                         </div>
@@ -233,11 +300,12 @@
                             </table>
                         </div>
                     </div>
+                        <div class="mt-3 mb-5">
+                            <button class="btn btn-success w-100">儲存變更</button>
+                        </div>
                     </div>
 
-                    <div class="mt-3 mb-5">
-                        <button class="btn btn-success w-100">儲存變更</button>
-                    </div>
+                    
 
                     <!-- Modal-Delete -->
                     <div class="modal fade"id="DeleteModal" tabindex="-1" aria-labelledby="DeleteModalLabel" aria-hidden="true">
