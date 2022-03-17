@@ -34,12 +34,14 @@
                 <button type="button" class="renew btn btn-warning ms-3" >編輯</button>
                 <button id="del" type="button" class="btn btn-danger ms-2">刪除</button>
             </div>
+            <div class="qwq" id="qwert">
+
+            </div>
         </div>
     </template>
 
     <template id="try">
-        <div style="background: red; width: 50px; height: 50px;" id="redDiv">
-            
+        <div style="background: red; display: inline-block; height: 50px;" id="redDiv">
         </div>
     </template>
 
@@ -71,6 +73,9 @@
             };
             console.log(todoObj);
             let todoList = [];
+            if(JSON.parse(localStorage.getItem('item')) == null){
+                localStorage.setItem('item', JSON.stringify(todoList));
+            }
             if(localStorage.getItem('item') == 'null'){
                 todoList.push(todoObj)
             }
@@ -133,23 +138,30 @@
                     cloneCard.querySelector('#content').id = "a"+index;
                     cloneCard.querySelector('.renew').id = "b"+index;
                     
-                    cloneCard.querySelector('.input-group').id = "b"+index;
+                    cloneCard.querySelector('.input-group').id = "text"+index;
+
+                    cloneCard.querySelector('.qwq').id = "qwert"+index;
 
                     document.querySelectorAll('.form-check-input').disabled = true;
-
                     row.append(cloneCard);
+
+                    row2 = document.getElementById(`qwert${index}`);
+                    tryTemplate(index + 1);
                 });
             }
             
         }
 
+        let row2;
+        let template2 = document.getElementById('try');
         function tryTemplate(id){
-            let row = document.getElementById(`n${id}`);
-            let cloneCard = template.content.cloneNode(true);
+           
+            let cloneCard2 = template2.content.cloneNode(true);
 
-            cloneCard.querySelector('#redDiv').innerText = id;
+            cloneCard2.getElementById('redDiv').innerHTML = "id:qwert"+(id-1);
 
-            row.append(cloneCard);
+            
+            row2.append(cloneCard2);
         }
 
     </script>

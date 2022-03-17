@@ -57,6 +57,7 @@
         //onclick
         //新增
         addBtn.onclick = function(){
+            
             let todoText = imputTxt.value;
             var todoObj = {
                 did: false,
@@ -64,7 +65,10 @@
             };
             console.log(todoObj);
             let todoList = [];
-            debugger
+
+            if(JSON.parse(localStorage.getItem('item')) == null){
+                localStorage.setItem('item', JSON.stringify(todoList));
+            }
             if(localStorage.getItem('item') == 'null'){
                 todoList.push(todoObj)
             }
