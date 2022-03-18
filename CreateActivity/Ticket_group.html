@@ -23,6 +23,13 @@
         .group{
             min-height: 500px;
         }
+        .thead-min-width th:first-child{  min-width: 30px;}        
+        .thead-min-width th:nth-child(2){  min-width: 30px;}        
+        .thead-min-width th:nth-child(3){  min-width: 150px;}        
+        .thead-min-width th:nth-child(4){  min-width: 100px;} 
+        .thead-min-width th:nth-child(5){  min-width: 100px;}        
+        .thead-min-width th:nth-child(6){  min-width: 100px;}        
+        .thead-min-width th:nth-child(7){  min-width: 100px;}   
         @media screen and (min-width: 768px) {
             .ticket{
                 width: 100%;
@@ -107,7 +114,7 @@
                         </div>
                         <div class="overflow-auto">
                             <table class="table border accordion"  id="accordionExample">
-                                <thead class="table-dark border border-dark">
+                                <thead class="table-dark border border-dark thead-min-width">
                                 <tr>
                                     <th scope="col"></th>
                                     <th scope="col"><input type="checkbox" name="all" onclick="//全選JS//" /></th>
