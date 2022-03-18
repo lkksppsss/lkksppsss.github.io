@@ -23,21 +23,39 @@
         .group{
             min-height: 500px;
         }
+        .question-model{
+            max-height: 600px;
+            width: 90%;
+            overflow: auto;
+        }
         @media screen and (min-width: 768px) {
             .ticket{
                 width: 100%;
             }
+            .question-model{
+            max-height: 600px;
+            width: 90%;
+            overflow: auto;
+        }
         }
 
         @media screen and (min-width: 1024px) {
             .ticket{
                 width: 800px;
             }
+            .question-model{
+                width: 100%;
+            
+            }
         }
 
         @media screen and (min-width: 1200px) {
             .ticket{
                 width: 800px;
+            }
+            .question-model{
+                width: 100%;
+            
             }
         }
         .ticket-label{
@@ -87,6 +105,8 @@
         .thead-min-width th:nth-child(2){  min-width: 20px;}        
         .thead-min-width th:nth-child(3){  min-width: 250px;}        
         .thead-min-width th:nth-child(4){  min-width: 100px;width: 100px;}
+
+        
     </style>
 
 
@@ -211,7 +231,7 @@
                     <!-- Modal-Add-Question -->
                     <div class="modal fade" id="groupModal" tabindex="-1" aria-labelledby="groupModalLabel" aria-hidden="true">
                         <div class="modal-dialog m-0 m-auto modal-dialog-centered">
-                            <div class="modal-content">
+                            <div class="modal-content question-model m-auto">
                                 <div class="modal-body lh-lg m-3">
                                     <p>問題:</p>
                                     <input type="text" class="col-md-11 col-10 bg-secondary opacity-25 mb-4">
@@ -229,7 +249,7 @@
                     <!-- Model-Edit-Question -->
                     <div class="modal fade" id="EditModal" tabindex="-1" aria-labelledby="EditModalLabel" aria-hidden="true">
                         <div class="modal-dialog m-0 m-auto modal-dialog-centered">
-                            <div class="modal-content">
+                            <div class="modal-content question-model m-auto">
                                 <div class="modal-body lh-lg m-3">
                                     <p>問題:</p>
                                     <input type="text" class="col-md-11 col-10 bg-secondary opacity-25 mb-4">
