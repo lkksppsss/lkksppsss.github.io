@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "SE0xC2f/TcBTHY6rr04Rgl2uXoy6LvqQ6h5oLV7Lngip+o5ZgC+0a04+kxTC+Rv38m80LnazJYzs6NbUAkREuw==",
+  "dgSpecHash": "lB7CuzQ84nG4Tp8aDwvdTtKQoMKPwgdGLOdTrslWWfGqtVj0XrUGOGjcRTeUuiZcHTbNg4H6chwLL9I+ZhQvsw==",
   "success": true,
-  "projectFilePath": "C:\\Users\\GL552V\\Desktop\\程式\\Build-MVC\\Core5Exercise\\BccupassMvc\\BccupassMvc\\BccupassMvc.csproj",
+  "projectFilePath": "C:\\Users\\GL552V\\Desktop\\程式\\BuildHtmlCss\\homework\\BccupassMvc\\BccupassMvc\\BccupassMvc.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\GL552V\\.nuget\\packages\\humanizer.core\\2.8.26\\humanizer.core.2.8.26.nupkg.sha512",
     "C:\\Users\\GL552V\\.nuget\\packages\\microsoft.aspnetcore.html.abstractions\\2.2.0\\microsoft.aspnetcore.html.abstractions.2.2.0.nupkg.sha512",
